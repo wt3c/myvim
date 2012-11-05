@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/carlos/.vimOLD'
+let g:netrw_dirhist_2='/media/GERAL/workspace/wttd/eventex/subscriptions'
+let g:netrw_dirhist_3='/home/wt3c/workspace/MyVim/.vim/tmp/snipmate'
