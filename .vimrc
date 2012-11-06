@@ -146,12 +146,27 @@ call pathogen#infect()
 " Minhas alterações      
 " ============================================================================
 
-set ru
+"http://aurelio.net/doc/dotfiles/vimrc.txt
 
+"Mostrar a posição do curso, regua.
+set ruler          
+
+".........................................................................INFO
 " highlight the screen column of the cursor
+"" Guarda posicao do cursor e historico da linha de comando :
+set viminfo='10,\"30,:40,%,n~/.viminfo
+au BufReadPost * if line("'\"")|execute("normal `\"")|endif
+
+"Abreviações e auto-correções
+iab pritn print
+
+
 set cuc
 " highlight the screen line of the cursor
 set cul
+
+
+
 
 " highlight spelling mistakes
 " set nospell
