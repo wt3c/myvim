@@ -6,7 +6,7 @@
 " Note to myself:
 " DO NOT USE <C-z> FOR SAVING WHEN PRESENTING!
 " ============================================
-
+source ~/.vim/bundles.vim
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
