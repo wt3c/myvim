@@ -183,7 +183,7 @@ noremap <Leader>; :PyLintAuto <CR>
 " Intall the xsel
 " sudo apt-get install xsel
 " Copy to X CLIPBOARD
-map <leader>cc :w !xsel -i -b<CR>
+map <leader>co :w !xsel -i -b<CR>
 map <leader>cp :w !xsel -i -p<CR>
 map <leader>cs :w !xsel -i -s<CR>
 " Paste from X CLIPBOARD
@@ -200,6 +200,7 @@ let g:neoComplcache_disableautocomplete=1
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_insert_char_pre = 1
 set completeopt-=preview
 
 
@@ -211,9 +212,24 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " SuperTab
-"let g:SuperTabDefultCompletionType='context'
+let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
+
+
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+         
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+
+let g:syntastic_enable_highlighting = 1
+
+nmap <leader>ee :Errors<cr>
+nmap <leader>ss :SyntasticCheck<CR>
 
 
 " Keybindings for plugin toggle
@@ -264,7 +280,7 @@ let g:pymode_syntax_builtin_funcs = 0
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 
-" set nofoldenable
+set nofoldenable
 
 
 " ============================================================================
