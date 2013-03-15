@@ -275,12 +275,15 @@ let g:pymode_syntax_builtin_objs = 0
 let g:pymode_syntax_builtin_funcs = 0
 
 
-
 " Python folding
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 
 set nofoldenable
+
+" Calcuculadora Científica
+:command! -nargs=+ Calc :py print <args>
+:py from math import *
 
 
 " ============================================================================
