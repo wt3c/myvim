@@ -37,12 +37,42 @@ filetype plugin indent on
 set pastetoggle=<F2>
 set clipboard=unnamed
 
+" """"""""""""""""""""""""""""""""""""""
+" COLORSCHEME
+" """"""""""""""""""""""""""""""""""""""
 
-source ~/.vim/themes/terroo-colors.vim
-" source ~/.vim/themes/dracula.vim
-" source ~/.vim/themes/dogrun.vim
-" source ~/.vim/themes/defminus.vim
-" source ~/.vim/themes/amber.vim
+" ----------------------- Sonokai
+" set t_Co=256
+" syntax enable
+" set termguicolors
+" let g:sonokai_style = 'maia'
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_disable_italic_comment = 1
+" colorscheme sonokai
+
+" ----------------------- ZenBurn
+" colorscheme zenburn
+" set guifont=Monaco:h14
+
+" ----------------------- Gruvbox-material
+set termguicolors
+set background=dark
+let g:gruvbox_material_background = 'soft'
+colorscheme gruvbox-material
+
+"------------------------ Material Monokai
+" set background=dark
+" set termguicolors
+" colorscheme material-monokai
+" let g:materialmonokai_italic=1
+" let g:materialmonokai_subtle_spell=1
+
+" ----------------------- Monokai
+" colorscheme monokai
+" ----------------------- Dogrun
+" colorscheme dogrun
+" ----------------------- Dracula
+" colorscheme dracula
 
 """"""""""""""""""""""""""""""""""""""""
 "" IndentLine
@@ -152,10 +182,37 @@ noremap XX "+x<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'preservim/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim' 
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+" -------- Python ----------------------
+"python sytax checker
+Plug 'nvie/vim-flake8'
+Plug 'vim-scripts/Pydiction'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'scrooloose/syntastic'
+"auto-completion stuff
+Plug 'Valloric/YouCompleteMe'
+Plug 'klen/rope-vim'
+Plug 'ervandew/supertab'
+""code folding
+Plug 'tmhedberg/SimpylFold'
+" -------- Themes ----------------------
+Plug 'terroo/terroo-colors'
+Plug 'jcherven/jummidark.vim'
+Plug 'ParamagicDev/vim-medic_chalk'
+Plug 'arzg/vim-colors-xcode'
+Plug 'sainnhe/sonokai'
+Plug 'wadackel/vim-dogrun'
+Plug 'sainnhe/gruvbox-material'
+Plug 'skielbasa/vim-material-monokai'
+Plug 'lsdr/monokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'altercation/vim-colors-solarized'
+Plug 'jnurmine/Zenburn'
 call plug#end()
 
 
@@ -173,10 +230,14 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "" Fechar o VIM se a unica janela a esquerda for o NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+"" Ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
 """"""""""""""""""""""""""""""""""""""""
 ""  Commentary 
 """""""""""""""""""""""""""""""""""""""
 map <leader>/ :Commentary<CR>
+ 
 
 """"""""""""""""""""""""""""""""""""""""
 ""  GIT - Fugitive 
@@ -186,6 +247,7 @@ map <leader>/ :Commentary<CR>
 """"""""""""""""""""""""""""""""""""""""
 "" vim-airline
 """""""""""""""""""""""""""""""""""""""" 
+"" Theme """"""""""""""""""""""""""""""
 " let g:airline_theme = 'powerlineish'
 let g:airline_theme = 'deus'
 let g:airline#extensions#branch#enabled = 1
@@ -193,6 +255,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
+
+" let g:airline_theme='terrooairline'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 let g:airline#extensions#virtualenv#enabled = 1
 
@@ -235,37 +301,81 @@ else
 endif
 
 
+"""""""""""""""""""""""""""""""""""""""""""
+""  PYTHON
+"""""""""""""""""""""""""""""""""""""""""""
+
+filetype plugin indent on    " enables filetype detection
+let g:SimpylFold_docstring_preview = 1
+
+"autocomplete
+let g:ycm_autoclose_preview_window_after_completion=1
+
+"custom keys
+let mapleader=" "
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" call togglebg#map("<F5>")
+
+"python with virtualenv support
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUA_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  sys.path.insert(0, project_base_dir)
+  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"it would be nice to set tag files by the active virtualenv here
+":set tags=~/mytags "tags for ctags and taglist
+"omnicomplete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+"------------Start Python PEP 8 stuff----------------
+" Number of spaces that a pre-existing tab is equal to.
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
+
+"spaces for indents
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
+au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.py set softtabstop=4
+
+" Use the below highlight group when displaying bad whitespace is desired.
+highlight BadWhitespace ctermbg=red guibg=red
+
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Wrap text after a certain number of characters
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
+
+" Use UNIX (\n) line endings.
+au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
+
+" Set the default file encoding to UTF-8:
+set encoding=utf-8
+
+" For full syntax highlighting:
+let python_highlight_all=1
+syntax on
+
+" Keep indentation level from previous line:
+autocmd FileType python set autoindent
+
+" make backspaces more powerfull
+set backspace=indent,eol,start
 
 
+"Folding based on indentation:
+autocmd FileType python set foldmethod=indent
+"use space to open folds
+nnoremap <space> za 
+"----------Stop python PEP 8 stuff--------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+"js stuff"
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
