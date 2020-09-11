@@ -26,9 +26,21 @@ set foldmarker={,}            " Define marcas de agrupamento como { e }
 set foldlevel=9999            " Inicia com todos os agrupamentos abertos
 set confirm                   " Pergunta antes de fechar
 set title                     " Exibe nome do arquivo
-let mapleader = ","           " Mapeia <leader> key                                                                                                                                                                         
+let mapleader = ","           " Mapeia <leader> key
 
-autocmd! bufwritepost .vimrc source % " Reloading o .vimrc sem quando salva                                                                                                                                                          
+" """"""""""""""""""""""""""""""""""""""
+" Auto formatações
+" """"""""""""""""""""""""""""""""""""""
+" --------- Limpar automagimente espaços à direita ------------------
+" --------- Python
+autocmd BufWritePre *.py :%s/\s\+$//e
+" --------- XML
+autocmd BufWritePre *.xml :%s/\s\+$//e
+
+" --------  ALternando entre os modos coluna de numeros da linha
+map <leader>rn :set rnu!<cr>
+
+autocmd! bufwritepost .vimrc source % " Reloading o .vimrc sem quando salva
 filetype plugin indent on
 
 " Better copy & paste
@@ -90,44 +102,44 @@ set mousemodel=popup
 set keymodel=startsel,stopsel
 set selection=exclusive
 
-""""""""""""""""""""""""""""""""""""""""                                                                                                                                                                        
-"" Remove o highlight da sua ultima pesquisa                                                                                                                                                    
 """"""""""""""""""""""""""""""""""""""""
-noremap <C-n> :nohl<CR>                                                                                                                                                                        
-vnoremap <C-n> :nohl<CR>                                                                                                                                                                       
-inoremap <C-n> :nohl<CR>                                                                                                                                                                       
+"" Remove o highlight da sua ultima pesquisa
+""""""""""""""""""""""""""""""""""""""""
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 """"""""""""""""""""""""""""""""""""""""
-"" Serach insensitive                                                                                                                                                                           
+"" Serach insensitive
 """"""""""""""""""""""""""""""""""""""""
-set hlsearch                                                                                                                                                                                   
-set incsearch                                                                                                                                                                                  
-set ignorecase                                                                                                                                                                                 
-set smartcase                           
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-""""""""""""""""""""""""""""""""""""""""                                                                                                                                                                                               
-"" Reais programadores não usam TABs mas espaços :P                                                                                                                                              
 """"""""""""""""""""""""""""""""""""""""
-set tabstop=4                                                                                                                                                                                  
-set softtabstop=4                                                                                                                                                                              
-set shiftwidth=4                                                                                                                                                                               
-set shiftround                                                                                                                                                                                 
-set expandtab                                                                                                                                                                                  
+"" Reais programadores não usam TABs mas espaços :P
+""""""""""""""""""""""""""""""""""""""""
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
 
-""""""""""""""""""""""""""""""""""""""""                                                                                                                                                                                               
-""  Lagura do documento                                                                                                                                                                          
 """"""""""""""""""""""""""""""""""""""""
-set tw=120 " Limite do documento                                                                                                                                                               
-set colorcolumn=120 " Posição da barra                                                                                                                                                         
-highlight colorcolumn ctermbg=233 " Cor da barra                                                                                                                                               
-set nowrap                                                                                                                                                                                     
-set fo-=t                                                                                                                                                                                      
+""  Lagura do documento
+""""""""""""""""""""""""""""""""""""""""
+set tw=120 " Limite do documento
+set colorcolumn=120 " Posição da barra
+highlight colorcolumn ctermbg=233 " Cor da barra
+set nowrap
+set fo-=t
 
-""""""""""""""""""""""""""""""""""""""""                                                                                                                                                                                               
-""  Fazer/desfazer                                                                                                                                                                               
 """"""""""""""""""""""""""""""""""""""""
-set history=200                                                                                                                                                                                
-set undolevels=200                                                                                                                                                                                                                                                                                                                                                                        
+""  Fazer/desfazer
+""""""""""""""""""""""""""""""""""""""""
+set history=200
+set undolevels=200
 
 """"""""""""""""""""""""""""""""""""""""
 "" Desabiitar o backup~  e swap files
@@ -183,7 +195,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'kien/ctrlp.vim' 
+Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -219,7 +231,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""
 "" NerdTree
 """"""""""""""""""""""""""""""""""""""""
-map <f2> :NERDTreeToggle<CR>                   
+map <f2> :NERDTreeToggle<CR>
 nnoremap <silent> <F4> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
@@ -231,22 +243,22 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "" Ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$'] 
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 """"""""""""""""""""""""""""""""""""""""
-""  Commentary 
+""  Commentary
 """""""""""""""""""""""""""""""""""""""
 map <leader>/ :Commentary<CR>
- 
+
 
 """"""""""""""""""""""""""""""""""""""""
-""  GIT - Fugitive 
+""  GIT - Fugitive
 """""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""
 "" vim-airline
-"""""""""""""""""""""""""""""""""""""""" 
+""""""""""""""""""""""""""""""""""""""""
 "" Theme """"""""""""""""""""""""""""""
 " let g:airline_theme = 'powerlineish'
 let g:airline_theme = 'deus'
@@ -322,7 +334,7 @@ py << EOF
 import os.path
 import sys
 import vim
-if 'VIRTUA_ENV' in os.environ:
+if 'VIRTUAL_ENV' in os.environ:
   project_base_dir = os.environ['VIRTUAL_ENV']
   sys.path.insert(0, project_base_dir)
   activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
@@ -374,7 +386,7 @@ set backspace=indent,eol,start
 "Folding based on indentation:
 autocmd FileType python set foldmethod=indent
 "use space to open folds
-nnoremap <space> za 
+nnoremap <space> za
 "----------Stop python PEP 8 stuff--------------
 
 "js stuff"
