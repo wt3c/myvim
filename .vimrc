@@ -53,6 +53,12 @@ set clipboard=unnamed
 " COLORSCHEME
 " """"""""""""""""""""""""""""""""""""""
 
+" ----------------------- Kuroi
+set background=dark   "or use the light theme: set background=light
+colorscheme kuroi
+set t_Co=256
+set termguicolors
+
 " ----------------------- Sonokai
 " set t_Co=256
 " syntax enable
@@ -67,10 +73,10 @@ set clipboard=unnamed
 " set guifont=Monaco:h14
 
 " ----------------------- Gruvbox-material
-set termguicolors
-set background=dark
-let g:gruvbox_material_background = 'soft'
-colorscheme gruvbox-material
+" set termguicolors
+" set background=dark
+" let g:gruvbox_material_background = 'soft'
+" colorscheme gruvbox-material
 
 "------------------------ Material Monokai
 " set background=dark
@@ -207,7 +213,7 @@ Plug 'vim-scripts/Pydiction'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'scrooloose/syntastic'
 "auto-completion stuff
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'klen/rope-vim'
 Plug 'ervandew/supertab'
 ""code folding
@@ -225,6 +231,8 @@ Plug 'lsdr/monokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'jnurmine/Zenburn'
+Plug 'aonemd/kuroi.vim'
+
 call plug#end()
 
 
