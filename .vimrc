@@ -176,7 +176,7 @@ noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
+noremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -193,6 +193,12 @@ noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
+"" Set Column number
+map <Leader>n :set nonumber<CR> 
+map <Leader>nn :set number<CR> 
+"" Relative number
+map <Leader>rn :set relativenumber<CR> 
+map <Leader>rnn :set norelativenumber<CR> 
 
 """"""""""""""""""""""""""""""""""""""""
 "" Plugins
