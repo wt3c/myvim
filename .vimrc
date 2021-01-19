@@ -58,7 +58,7 @@ set background=dark   "or use the light theme: set background=light
 colorscheme kuroi
 set t_Co=256
 set termguicolors
-
+" -------------------------
 " ----------------------- Sonokai
 " set t_Co=256
 " syntax enable
