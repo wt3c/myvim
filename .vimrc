@@ -241,6 +241,11 @@ Plug 'aonemd/kuroi.vim'
 
 call plug#end()
 
+""""""""""""""""""""""""""""""""""""""""
+"" PyDiction
+""""""""""""""""""""""""""""""""""""""""
+let g:pydiction_location = '~/.vim/plugged/Pydiction/complete-dict'
+
 
 """"""""""""""""""""""""""""""""""""""""
 "" NerdTree
