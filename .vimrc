@@ -11,7 +11,7 @@ set ruler
 set number                    " Numera as linhas
 set linebreak                 " Quebra a linha sem quebrar a palavra
 set wildmode=longest,list     " Completa o comando com TAB igual o bash
-set expandtab                 " Identa com espaços
+ret expandtab                 " Identa com espaços
 set autochdir                 " Vai pro diretório do arquivo aberto
 set cursorline                " Mostra linha atual mais clara
 set cuc                       " Linha no curso vertical
@@ -58,7 +58,7 @@ set background=dark   "or use the light theme: set background=light
 colorscheme kuroi
 set t_Co=256
 set termguicolors
-
+" -------------------------
 " ----------------------- Sonokai
 " set t_Co=256
 " syntax enable
