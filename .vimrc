@@ -213,11 +213,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 " -------- Python ----------------------
-"python sytax checker
+" python sytax checker
+" https://vimawesome.com/
 Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/Pydiction'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'scrooloose/syntastic'
+Plug 'tell-k/vim-autopep8'
+Plug 'hynek/vim-python-pep8-indent'
 "auto-completion stuff
 " Plug 'Valloric/YouCompleteMe'
 Plug 'davidhalter/jedi-vim'
@@ -225,6 +228,8 @@ Plug 'klen/rope-vim'
 Plug 'ervandew/supertab'
 ""code folding
 Plug 'tmhedberg/SimpylFold'
+"" Perfumaria
+Plug 'luochen1990/rainbow'
 " -------- Themes ----------------------
 Plug 'terroo/terroo-colors'
 Plug 'jcherven/jummidark.vim'
