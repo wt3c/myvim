@@ -220,6 +220,7 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'scrooloose/syntastic'
 "auto-completion stuff
 " Plug 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim'
 Plug 'klen/rope-vim'
 Plug 'ervandew/supertab'
 ""code folding
@@ -339,12 +340,22 @@ endif
 filetype plugin indent on    " enables filetype detection
 let g:SimpylFold_docstring_preview = 1
 
-"autocomplete
-let g:ycm_autoclose_preview_window_after_completion=1
+" autocomplete
+" ----------- Jedi
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_stubs_command = "<leader>s"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r""
+"
+"let g:ycm_autoclose_preview_window_after_completion=1
 
 "custom keys
-let mapleader=" "
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let mapleader=" "
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " call togglebg#map("<F5>")
 
@@ -363,7 +374,7 @@ EOF
 "it would be nice to set tag files by the active virtualenv here
 ":set tags=~/mytags "tags for ctags and taglist
 "omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+" autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
