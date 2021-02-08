@@ -11,7 +11,7 @@ set ruler
 set number                    " Numera as linhas
 set linebreak                 " Quebra a linha sem quebrar a palavra
 set wildmode=longest,list     " Completa o comando com TAB igual o bash
-ret expandtab                 " Identa com espaços
+set expandtab                 " Identa com espaços
 set autochdir                 " Vai pro diretório do arquivo aberto
 set cursorline                " Mostra linha atual mais clara
 set cuc                       " Linha no curso vertical
